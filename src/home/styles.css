@@ -1,0 +1,8 @@
+.home{
+  z-index: 1;
+  background-color: #FFF;
+}
+
+.home.inactive{
+  top: 100%;
+}
