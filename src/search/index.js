@@ -3,9 +3,14 @@ import { Lists, List, Item } from '../home'
 import classnames from 'classnames'
 import './styles.css'
 
-const Header = () => {
+const Header = (props) => {
+  const { onShowHome } = props
   return (
-    <div>Header</div>
+    <header>
+      <div>Input</div>
+      <div>L</div>
+      <div onClick={onShowHome}>Cancel</div>
+    </header>
   )
 }
 
@@ -15,7 +20,7 @@ class Search extends PureComponent {
 
   render() {
     const { filter } = this.state
-    const { items = [], view } = this.props
+    const { items = [], view, onShowHome } = this.props
     let remove = x => true
     if (filter !== '') {
       remove = x => x.label.includes(filter)
@@ -23,7 +28,7 @@ class Search extends PureComponent {
     const filtered = items.filter(remove)
     return (
       <section className={classnames('search', { active: view === 'search' })}>
-        <Header />
+        <Header onShowHome={onShowHome} />
         <Lists items={filtered} />
       </section>
     )
