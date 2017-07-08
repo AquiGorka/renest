@@ -1,5 +1,73 @@
 .add{
   z-index: 0;
-  background-color: rgba(0,0,255,.2);
 }
 
+.add header{
+  border: 1px solid red;
+
+  height: 192.9px;
+  display: flex;
+}
+
+.add header .back{
+  border: 1px solid red;
+
+  width: 22px;
+  height: 42px;
+  margin: 61px 0 0 25px;
+}
+
+.add header .title{
+  border: 1px solid red;
+
+  width: 162px;
+  height: 34px;
+  margin: 58px 0 0 247.5px;
+}
+
+.add ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 2px solid blue;
+  overflow: auto;
+}
+
+.add li{
+  height: 108px;
+  margin: 10.5px 19px;
+  border-radius: 10px;
+	background-color: #F4F7FA;
+}
+
+.add li .wrapper{
+  display: flex;
+}
+
+.add li .label{
+  flex-grow: 1;
+  height: 30px;
+  margin: 33.1px 0 0 28px;
+}
+
+.add li .label.inactive{
+  display: none;
+}
+
+.add li .icon{
+  width: 42px;
+  height: 42px;
+  margin: 33.1px 29px 32.9px
+}
+
+.add li .icon.close{
+  transform: rotate(45deg);
+}
+
+.add li .type{
+  display: none;
+}
+
+.add li .type.active{
+  display: flex;
+}
