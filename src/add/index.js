@@ -58,10 +58,11 @@ const List = (props) => {
 
 export default (props) => {
   const { items = [], onShowHome, onUpdate } = props
+  const filtered = items.filter(x => x.priority === -1)
   return (
     <section className="add">
       <Header onShowHome={onShowHome} />
-      <List items={items} onAdd={(id, newPriority) => {
+      <List items={filtered} onAdd={(id, newPriority) => {
         const item = items.find(x => x.id === id)
         const { priority, ...rest } = item
         const newItem = { priority: newPriority, ...rest }

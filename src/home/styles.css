@@ -1,6 +1,5 @@
 .home{
   z-index: 1;
-  background-color: #FFF;
   transition: top 0.5s;
   transition-timing-function: ease-in;
 }

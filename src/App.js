@@ -8,14 +8,17 @@ import Add from './add'
 import './App.css'
 
 class App extends Component {
-  state = { synching: true, view: 'add' }
+  state = { synching: true, view: 'home' }
 
   componentDidMount = () => {
     firebase.initializeApp(firebaseConfig)
-    firebase.database().ref().on('value', (snapshot) => {
+    
+    firebase.database().ref().on('value', snapshot => {
       console.log('Received update: ', snapshot.val());
       this.setState({ data: snapshot.val(), synching: false })
-      /*
+    });
+
+    firebase.database().ref().once('value', snapshot => { 
       firebase.database().ref().set({
         version: '1.0.0',
         items: [
@@ -32,8 +35,7 @@ class App extends Component {
           { id: '011', label: 'Order supplies', priority: -1, status: false }
         ]
       })
-      */
-    });
+    })
   }
  
   onUpdate = data => {
@@ -43,6 +45,10 @@ class App extends Component {
     }
     firebase.database().ref().set(data);
   }
+
+  onShow = (view) => {
+    this.setState({ view })
+  }
   
   render() {
     const { data = {}, synching, view = 'home' } = this.state
@@ -50,22 +56,23 @@ class App extends Component {
       return <div>Loading</div>
     }
     const { items } = data
-    const options = items.filter(x => x.priority === -1)
     return (
       <div className="app">
         <Add
           view={view}
-          items={options}
+          items={items}
           onUpdate={this.onUpdate}
-          onShowHome={() => this.setState({ view: 'home' })} />
+          onShowHome={() => this.onShow('home')} />
         <Home
           view={view}
           items={items}
           onupdate={this.onupdate}
-          onShowAdd={() => this.setState({ view: 'add'})} />
+          onShowSearch={() => this.onShow('search')}
+          onShowAdd={() => this.onShow('add')} />
         <Search
           view={view}
-          data={items} />
+          items={items}
+          onShowHome={() => this.onShow('home')} />
       </div>
     )
   }
