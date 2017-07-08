@@ -7,9 +7,9 @@ const Header = (props) => {
   return (
     <header>
       <div className="wrapper">
-        <div className="menuIcon">M</div>
+        <img src="img/menu.svg" className="menuIcon" />
         <div className="title">ReNest</div>
-        <div onClick={onShowAdd} className="addIcon">+</div>
+        <img src="img/add.svg" className="addIcon" onClick={onShowAdd} />
       </div>
       <Search onShowSearch={onShowSearch} />
     </header>
@@ -20,7 +20,7 @@ const Search = (props) => {
   const { onShowSearch } = props
   return (
     <div className="searchBox" onClick={onShowSearch}>
-      <div className="icon">L</div>
+      <img src="img/search-icon.svg" className="icon" />
       <div className="text">Search</div>
     </div>
   )
@@ -38,13 +38,15 @@ export const Item = (props) => {
 }
 
 export const List = (props) => {
-  const { label, items } = props
+  const { label, items, color } = props
   if (!items.length) {
     return <div></div>
   }
+  const myStyle = { color }
   return (
     <div className="listWrapper">
-      <div className="listLabel">{label}</div>
+      <div className="listLabelBg"></div>
+      <div className="listLabel" style={myStyle}>{label}</div>
       <ul>
         {items.sort((a, b) => a.id - b.id).map(item => {
           const { id } = item

@@ -3,9 +3,11 @@
   height: 100%;
   width: 100%;
   display: flex;
+  -webkit-overflow-scrolling: touch;
 }
 
 section {
+  overflow: auto;
   display: flex;
   flex-direction: column;
   position: absolute;
