@@ -8,7 +8,7 @@ import Add from './add'
 import './App.css'
 
 class App extends Component {
-  state = { synching: true }
+  state = { synching: true, view: 'add' }
 
   componentDidMount = () => {
     firebase.initializeApp(firebaseConfig)
@@ -27,17 +27,25 @@ class App extends Component {
   }
   
   render() {
-    const { data = {}, synching } = this.state
+    const { data = {}, synching, view = 'home' } = this.state
     if (synching) {
       return <div>Loading</div>
     }
     return (
       <div className="app">
-      
-        <Add data={data} onUpdate={this.onUpdate} />
-        <Home data={data} onupdate={this.onupdate} />
-        <Search data={data} />
-
+        <Add
+          view={view}
+          data={data}
+          onUpdate={this.onUpdate}
+          onShowHome={() => this.setState({ view: 'home' })} />
+        <Home
+          view={view}
+          data={data}
+          onupdate={this.onupdate}
+          onShowAdd={() => this.setState({ view: 'add'})} />
+        <Search
+          view={view}
+          data={data} />
       </div>
     )
   }

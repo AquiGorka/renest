@@ -1,8 +1,65 @@
 .home{
   z-index: 1;
   background-color: #FFF;
+  transition: top 0.5s;
+  transition-timing-function: ease-in;
 }
 
 .home.inactive{
   top: 100%;
+}
+
+.home header{
+  display: flex;
+  height: 139px;
+}
+
+.home header .title{
+  border: 1px solid red;
+  
+  width: 135px;
+  height: 34px;
+  flex-grow: 1;
+  text-align: center;
+  margin-top: 58px;
+}
+
+.home header .menuIcon{
+  border: 1px solid red;
+
+  width: 40px;
+  height: 34px;
+  margin: 66px 0 0 30px;
+}
+
+.home header .addIcon{
+  border: 1px solid red;
+  
+  width: 42px;
+  height: 42px;
+  margin: 62px 30px 0 0;
+}
+
+.home .searchBox{
+  display: flex;
+  margin: 0 19px;
+	height: 68px;
+	border-radius: 100px;
+	background-color: #F4F7FA;
+}
+
+.home .searchBox .icon{
+  border: 1px solid red;
+
+  width: 27px;
+  height: 26px;
+  margin: 21px 0 0 43px;
+}
+
+.home .searchBox .text{
+  border: 1px solid red;
+
+  width: 85px;
+  height: 22px;
+  margin: 15px 0 0 18px;
 }
