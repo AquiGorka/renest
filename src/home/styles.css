@@ -126,10 +126,11 @@
 
 .home .listWrapper .itemWrapper .status{
   width: 62px;
+  min-width: 62px;
   height: 62px;
   border-radius: 100px;
 	border: solid 2px #32315c;
-  margin: 39px 0 39px 31px;
+  margin: 39px 0 0 31px;
 }
 
 .home .listWrapper .itemWrapper .text{

@@ -6,6 +6,7 @@
   border: 1px solid red;
 
   height: 192.9px;
+  min-height: 192.9px;
   display: flex;
 }
 
@@ -30,7 +31,6 @@
   padding: 0;
   list-style: none;
   border: 2px solid blue;
-  overflow: auto;
 }
 
 .add li{
