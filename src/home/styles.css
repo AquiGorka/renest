@@ -9,18 +9,32 @@
 }
 
 .home header{
+  height: 313.2px;
+  min-height: 313.2px;
+}
+
+.home header .wrapper{
   display: flex;
   height: 139px;
 }
 
 .home header .title{
-  border: 1px solid red;
-  
   width: 135px;
   height: 34px;
   flex-grow: 1;
   text-align: center;
   margin-top: 58px;
+	font-size: 38px;
+	font-weight: 900;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 0.89;
+	letter-spacing: 0.5px;
+	color: #32315C;
+}
+
+.re-nest .text-style-1 {
+	letter-spacing: normal;
 }
 
 .home header .menuIcon{
@@ -61,4 +75,50 @@
   width: 85px;
   height: 22px;
   margin: 15px 0 0 18px;
+}
+
+.home .lists{
+  background: #F4F7FA;
+  overflow: auto;
+}
+
+.home .listWrapper{
+
+}
+
+.home .listLabel{
+  height: 100px;
+  opacity: 0.4;
+  background-image: linear-gradient(to top, rgba(50, 49, 92, 0.0), #32315C);
+  padding: 37px 0 43px 50px;
+}
+
+.home .listWrapper ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home .listWrapper li{
+  height: 140px;
+  background: #FFF;
+  margin: 10px 19px;
+  border-radius: 10px;
+}
+
+.home .listWrapper .itemWrapper{
+  display: flex;
+}
+
+.home .listWrapper .itemWrapper .status{
+  width: 62px;
+  height: 62px;
+  border-radius: 100px;
+	border: solid 2px #32315c;
+  margin: 39px 0 39px 31px;
+}
+
+.home .listWrapper .itemWrapper .text{
+  height: 30px;
+  margin: 46px 0 0 34px;
 }
