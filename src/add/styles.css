@@ -3,71 +3,147 @@
 }
 
 .add header{
-  border: 1px solid red;
-
   height: 192.9px;
   min-height: 192.9px;
   display: flex;
 }
 
 .add header .back{
-  border: 1px solid red;
-
   width: 22px;
   height: 42px;
   margin: 61px 0 0 25px;
 }
 
 .add header .title{
-  border: 1px solid red;
-
-  width: 162px;
+  flex-grow: 1;
   height: 34px;
-  margin: 58px 0 0 247.5px;
+  margin: 65px 0 0 -47px;
+  font-family: Avenir;
+	font-size: 38px;
+	font-weight: 500;
+	line-height: 0.89;
+	letter-spacing: 0.5px;
+	text-align: center;
+	color: #32315C;
 }
 
 .add ul{
   margin: 0;
   padding: 0;
   list-style: none;
-  border: 2px solid blue;
 }
 
 .add li{
-  height: 108px;
+  min-height: 108px;
   margin: 10.5px 19px;
   border-radius: 10px;
 	background-color: #F4F7FA;
 }
 
 .add li .wrapper{
+  min-height: 108px;
+  height: 100%;
   display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .add li .label{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  min-height: 108px;
+  align-items: center;
   flex-grow: 1;
   height: 30px;
-  margin: 33.1px 0 0 28px;
+  margin-left: 28px;
+  font-family: Avenir-Book;
+	font-size: 32px;
+	line-height: 0.94;
+	color: #32315C;
 }
 
 .add li .label.inactive{
-  display: none;
+  opacity: 0;
+  z-index: 0;
 }
 
 .add li .icon{
-  width: 42px;
+  position: relative;
+  z-index: 1;
+  width: 42px !important;
   height: 42px;
-  margin: 33.1px 29px 32.9px
+  margin-right: 29px;
+  color: #32315C;
+  transition: all .3s ease-out;
 }
 
 .add li .icon.close{
-  transform: rotate(45deg);
+  transform: rotate(135deg);
+  opacity: 0.5;
 }
 
 .add li .type{
-  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.add li .type.active{
+.add li .priority{
+  position: relative;
+  left: -10px;
+  opacity: 0;
+  transition: all .3s ease-out;
   display: flex;
+  align-items: center;
+  justify-content: center;
+	height: 88px;
+  flex-grow: 1;
+  max-width: 185px;
+	border-radius: 10px;
+  color: #FFF;
+  font-family: Avenir-Book;
+	font-size: 25px;
+	line-height: 1.2;
+	text-align: center;
+  margin: 0 9px;
+}
+
+@media (max-device-width: 500px) {
+  .add li .priority{
+    font-size: 20px;
+    margin: 0 4px;
+    padding: 0 4px;
+  }
+}
+
+
+.add li .priority.in{
+  left: 0;
+  opacity: 1;
+}
+
+.add li .high{
+	background-color: #FF2765;
+}
+
+.add li .normal{
+  background-color: #47CE00;
+}
+
+.add li .low{
+  background-color: #4196EB;
+}
+
+.add li .ghost{
+  flex-grow: 1;
+  min-width: 71px;
+  height: 42px;
 }

@@ -6,7 +6,7 @@ const Header = (props) => {
   const { onShowHome } = props
   return (
     <header>
-      <div className="back" onClick={onShowHome}>{'<'}</div>
+      <img src="img/shape.svg" className="back" onClick={onShowHome} />
       <div className="title">Add Task</div>
     </header>
   )
@@ -24,17 +24,37 @@ class Item extends Component{
     const labelClass = classnames('label', { inactive: status })
     // icon
     const iconClass = classnames('icon', { close: status })
-    // type
-    const typeClass = classnames('type', { active: status })
+    // priority btns
+    const btnHighhClass = classnames('priority', 'high', { in: status })
+    const btnNormalClass = classnames('priority', 'normal', { in: status })
+    const btnLowClass = classnames('priority', 'low', { in: status })
     return (
       <div className="wrapper"> 
         <div className={labelClass}>{label}</div>
-        <div className={typeClass}>
-          <div className="high" onClick={() => onAdd(id, 3)}>High Priority</div>
-          <div className="normal" onClick={() => onAdd(id, 2)}>Normal Priority</div>
-          <div className="low" onClick={() => onAdd(id, 1)}>Low Priority</div>
+        <div className="type">
+          <div
+            className={btnHighhClass}
+            onClick={() => onAdd(id, 3)}>
+            High<br />Priority
+          </div>
+          <div
+            className={btnNormalClass}
+            onClick={() => onAdd(id, 2)}>
+            Normal<br />Priority
+          </div>
+          <div
+            className={btnLowClass}
+            onClick={() => onAdd(id, 1)}>
+            Low<br />Priority
+          </div>
+          <div className="ghost"></div>
         </div>
-        <div className={iconClass} onClick={() => this.setState({ status: !status})}>+</div>
+        <div>
+          <img
+            src="img/add.svg"
+            className={iconClass}
+            onClick={() => this.setState({ status: !status })} />
+        </div>
       </div>
     )
   }
