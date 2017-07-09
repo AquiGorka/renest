@@ -54,7 +54,11 @@ class App extends PureComponent {
   render() {
     const { data = {}, synching, view = 'home' } = this.state
     if (synching) {
-      return <div>Loading</div>
+      return (
+        <div className="loading">
+          <img src="img/spinner.gif" alt="Spinning round & around" />
+        </div>
+      )
     }
     const { items } = data
     return (
