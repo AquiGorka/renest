@@ -281,6 +281,7 @@
 	color: #32315C;
   margin-left: 34px;
   margin-right: 4px;
+  word-break: break-word;
 }
 
 /* completed list */
@@ -328,4 +329,5 @@
   text-decoration: line-through;
   margin-left: 34px;
   margin-right: 4px;
+  word-break: break-word;
 }
