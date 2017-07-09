@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import classnames from 'classnames'
 import './styles.css'
 
-const Header = (props) => {
+const Header = props => {
   const { onShowHome } = props
   return (
     <header>
@@ -12,7 +12,7 @@ const Header = (props) => {
   )
 }
 
-class Item extends Component{
+class Item extends PureComponent{
  
   state = { status: false }
 
@@ -60,7 +60,7 @@ class Item extends Component{
   }
 }
 
-const List = (props) => {
+const List = props => {
   const { items, onAdd } = props
   return (
     <ul>
@@ -76,7 +76,7 @@ const List = (props) => {
   )
 }
 
-export default (props) => {
+export default props => {
   const { items = [], onShowHome, onUpdate } = props
   const filtered = items.filter(x => x.priority === -1)
   return (
