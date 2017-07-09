@@ -1,6 +1,6 @@
 # ReNest
 
-The idea is to be able to use this to do list when moving to a new place. This prototype uses firebase so all clients have the data synched. In a future release a way to manage the items should be added, for now the list is set (althouhg it can be easily configured directly from firebase's database cms).
+The idea is to be able to use this app to do list when moving to a new place. This prototype uses firebase so all clients have the data synched. In a future release a way to manage the 2do items should be added, for now the list is preset (although it can be easily configured directly from firebase's database cms).
 
 A couple of animations were added to showcase how easily css transitions can be used. With React I defined two states (initial and final) and by adding a class the css transitions are executed.
 
