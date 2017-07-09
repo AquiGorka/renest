@@ -85,7 +85,6 @@
   opacity: 0.5;
 	font-family: Avenir-Book;
 	font-size: 28px;
-	line-height: 0.79;
 	color: #1D1D26;
   background: transparent;
   border: none;
@@ -140,6 +139,7 @@
 .home .lists.searchActive{
   top: -190px;
   background: #F4F7FA;
+  min-height: 190px;
 }
 
 .home .filters.searchActive{
