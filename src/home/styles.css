@@ -1,8 +1,7 @@
 /* home */
 .home{
   z-index: 1;
-  transition: top 0.5s;
-  transition-timing-function: ease-in;
+  transition: top 0.5s ease-out;
   overflow-x: hidden;
   background: #F4F7FA;
 }
@@ -59,10 +58,12 @@
 .home .searchWrapper{
   display: flex;
   align-items: center;
+  transition: all .5s ease-in;
 }
 
 .home .searchBox{
   display: flex;
+  width: 100%;
   margin: 0 19px;
 	height: 68px;
 	border-radius: 100px;
@@ -187,7 +188,7 @@
   position: relative;
   left: 0;
   width: 200%;
-  transition: left .5s ease-out;
+  transition: all .5s ease-out;
 }
 
 .home .lists.completed{

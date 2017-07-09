@@ -93,7 +93,7 @@
   z-index: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .add li .priority{
@@ -144,7 +144,6 @@ and (orientation: portrait) {
 }
 
 .add li .ghost{
-  flex-grow: 1;
   min-width: 71px;
   height: 42px;
 }
