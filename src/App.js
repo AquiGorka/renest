@@ -7,7 +7,7 @@ import Add from './add'
 import './App.css'
 
 class App extends Component {
-  state = { synching: true, view: 'search' }
+  state = { synching: true, view: 'home' }
 
   componentDidMount = () => {
     firebase.initializeApp(firebaseConfig)
@@ -68,7 +68,8 @@ class App extends Component {
           items={items}
           onUpdate={this.onUpdate}
           onShowSearch={() => this.onShow('search')}
-          onShowAdd={() => this.onShow('add')} />
+          onShowAdd={() => this.onShow('add')}
+          onShowHome={() => this.onShow('home')} />
       </div>
     )
   }
