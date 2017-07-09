@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { version } from '../package.json'
 import firebase from 'firebase'
 import firebaseConfig from '../firebase.js'
@@ -6,7 +6,7 @@ import Home from './home'
 import Add from './add'
 import './App.css'
 
-class App extends Component {
+class App extends PureComponent {
   state = { synching: true, view: 'home' }
 
   componentDidMount = () => {
