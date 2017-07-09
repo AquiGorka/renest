@@ -176,7 +176,10 @@ class Home extends PureComponent {
         <Header
           onShowHome={onShowHome}
           onShowAdd={onShowAdd}
-          onShowSearch={onShowSearch}
+          onShowSearch={() => {
+            this.setState({ filter: 'tasks' })
+            onShowSearch()
+          }}
           view={view}
           filter={filter}
           query={query}
