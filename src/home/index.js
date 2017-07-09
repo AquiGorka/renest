@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { PureComponent }  from 'react'
 import classnames from 'classnames'
 import './styles.css'
 
 const Header = (props) => {
-  const { onShowAdd, onShowSearch } = props
+  const { onQuery, query, onFilter, filter, onShowAdd, onShowSearch } = props
+  const taskClass = classnames('item', { active: filter === 'tasks' })
+  const completedClass = classnames('item', { active: filter === 'completed' })
+  const sliderClass = classnames('sliderWrapper', { completed: filter === 'completed' })
   return (
     <header>
       <div className="wrapper">
@@ -13,9 +16,11 @@ const Header = (props) => {
       </div>
       <Search onShowSearch={onShowSearch} />
       <div className="filter">
-        <div className="item">Tasks</div>
-        <div className="item">Completed</div>
-        <div className="slider"></div>
+        <div onClick={() => onFilter('tasks')} className={taskClass}>Tasks</div>
+        <div onClick={() => onFilter('completed')} className={completedClass}>Completed</div>
+        <div className={sliderClass}>
+          <div className="slider"></div>
+        </div>
       </div>
     </header>
   )
@@ -95,14 +100,40 @@ export const Lists = (props) => {
   )
 }
 
-const Home = (props) => {
-  const { items = [], view, onShowAdd, onShowSearch } = props
-  return (
-    <section className={classnames('home', { inactive: view === 'add' })}>
-      <Header onShowAdd={onShowAdd} onShowSearch={onShowSearch} />
-      <Lists items={items} />
-    </section>
-  )
+class Home extends PureComponent {
+
+  state = { filter: 'tasks', query: '' }
+
+  onFilter = filter => {
+    this.setState({ filter })
+  }
+
+  onQuery = query => {
+    this.setState({ query })
+  }
+
+  render() {
+    const { filter, query } = this.state
+    const { items = [], view, onShowAdd, onShowSearch } = this.props
+    let remove = x => !x.status
+    if (filter === 'completed') {
+      remove = x => x.status
+    }
+    const filtered = items.filter(remove)
+    return (
+      <section className={classnames('home', { inactive: view === 'add' })}>
+        <Header
+          onShowAdd={onShowAdd}
+          onShowSearch={onShowSearch}
+          filter={filter}
+          query={query}
+          onFilter={this.onFilter}
+          onQuery={this.onQuery} />
+        <Lists items={filtered} />
+      </section>
+    )
+  }
 }
+  
   
 export default Home

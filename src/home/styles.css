@@ -87,13 +87,15 @@
   position: relative;
   height: 106.1px;
   display: flex;
-  border: 1px solid red;
   align-items: flex-end;
   justify-content: space-around;
 }
 
 .home .filter .item{
-  font-family: Avenir;
+  width: 50%;
+  margin-bottom: 35px;
+  opacity: 0.3;
+	font-family: Avenir;
 	font-size: 26px;
 	font-weight: 900;
 	line-height: 1.15;
@@ -101,14 +103,29 @@
 	color: #1d1d26;
 }
 
-.home .filter .slider{
+.home .filter .item.active{
+  opacity: 1;
+}
+
+.home .filter .sliderWrapper{
+  transition: left 0.5s ease-out;
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.home .filter .slider{
   height: 3px;
   width: 100px;
   background-color: #1d1d26;
 	box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, 0.03);
+}
+
+.home .filter .sliderWrapper.completed{
+  left: 50%;
 }
 
 .home .lists{
