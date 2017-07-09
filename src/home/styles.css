@@ -204,6 +204,7 @@
   position: relative;
   left: 0;
   width: 200%;
+  height: 100%;
   transition: all .5s ease-out;
   background: #F4F7FA;
 }
@@ -218,6 +219,11 @@
   position: relative;
   height: 100%;
   width: 50%;
+}
+
+.home .lists.completed .tasksList{
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .home .listWrapper{
@@ -363,4 +369,14 @@
   margin-left: 34px;
   margin-right: 4px;
   word-break: break-word;
+}
+
+.home .lists .completedList{
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.home .lists.completed .completedList{
+  max-height: inherit;
+  overflow: inherit;
 }
