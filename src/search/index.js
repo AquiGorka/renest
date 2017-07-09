@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { Lists, List, Item } from '../home'
 import classnames from 'classnames'
 import './styles.css'
 
@@ -29,7 +28,6 @@ class Search extends PureComponent {
     return (
       <section className={classnames('search', { active: view === 'search' })}>
         <Header onShowHome={onShowHome} />
-        <Lists items={filtered} />
       </section>
     )
   }

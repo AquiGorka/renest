@@ -133,37 +133,12 @@
   display: flex;
   position: relative;
   left: 0;
-  width: 100%;
+  width: 200%;
   transition: left .5s ease-out;
-}
-
-.home .lists .tasksList{
-  position: relative;
-  background: #F4F7FA;
-  height: 100%;
-}
-
-.home .lists.completed .completedList{
-  position: relative;
-  height: 100%;
-  border: none;
 }
 
 .home .lists.completed{
   left: -100%;
-}
-
-.home .lists.completed .tasksList{
-  position: absolute;
-  border:10px solid yellow;
-}
-
-.home .lists .completedList{
-  background: #F4F7FA;
-  width: 100%;
-  position: absolute;
-  left: 100%;
-  border:10px solid yellow;
 }
 
 .home .listWrapper{
@@ -231,5 +206,59 @@
 	line-height: 0.83;
 	color: #32315C;
   margin-left: 34px;
+  margin-right: 4px;
 }
 
+.home .lists .tasksList{
+  position: relative;
+  background: #F4F7FA;
+  height: 100%;
+  width: 50%;
+}
+
+.home .lists .completedList{
+  background: #F4F7FA;
+  height: 101%;
+  width: 50%;
+  left: 50%;
+}
+
+.home .lists .completedList ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home .lists .completedList li{
+  height: 134px;
+  margin: 0 18px;
+	border-bottom: solid 1px rgba(151,151,151,0.3);
+}
+
+.home .lists .completedList .completedItemWrapper{
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.home .lists .completedList .completedItemWrapper .status{
+  width: 62px;
+  min-width: 62px;
+  height: 62px;
+  margin-left: 31px;
+}
+
+.home .lists .completedList .completedItemWrapper .text{
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  opacity: 0.2;
+	font-family: Avenir-Book;
+	font-size: 36px;
+	line-height: 0.83;
+	color: #32315c;
+  text-decoration: line-through;
+  margin-left: 34px;
+  margin-right: 4px;
+}

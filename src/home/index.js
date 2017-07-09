@@ -45,18 +45,18 @@ const Search = props => {
   )
 }
 
-export const Item = props => {
+const Item = props => {
   const { item, onCompleted } = props
   const { id, label } = item
   return (
     <div className="itemWrapper">
-      <div onClick={() => onCompleted(id)}className="status"></div>
+      <div onClick={() => onCompleted(id)} className="status"></div>
       <div className="text">{label}</div>
     </div>
   )
 }
 
-export const List = props => {
+const List = props => {
   const { label, items, color, onCompleted } = props
   if (!items.length) {
     return <div></div>
@@ -80,6 +80,16 @@ export const List = props => {
   )
 }
 
+const CompletedItem = props => {
+  const { item, onCompleted } = props
+  const { id, label } = item
+  return (
+    <div className="completedItemWrapper">
+      <img src="img/group.svg" className="status" />
+      <div className="text">{label}</div>
+    </div>
+  )
+}
 const Completed = props => {
   const { items } = props
   if (!items.length) {
@@ -89,13 +99,13 @@ const Completed = props => {
     <ul>
       {items.map(item => {
         const { id, label } = item
-        return <li key={id}>{label}</li>
+        return <li key={id}><CompletedItem item={item} /></li>
       })}
     </ul>
   )
 }
 
-export const Lists = props => {
+const Lists = props => {
   const { items = [], onCompleted, filter } = props
   const listsClass = classnames('lists', { completed: filter === 'completed' })
   return (
