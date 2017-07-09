@@ -15,6 +15,7 @@
 
 .home header .wrapper{
   display: flex;
+  align-items: center;
   height: 139px;
 }
 
@@ -23,7 +24,6 @@
   height: 34px;
   flex-grow: 1;
   text-align: center;
-  margin-top: 58px;
 	font-size: 38px;
 	font-weight: 900;
 	font-style: normal;
@@ -31,12 +31,13 @@
 	line-height: 0.89;
 	letter-spacing: 0.5px;
 	color: #32315C;
+  margin-left: 1px;
 }
 
 .home header .menuIcon{
   width: 40px;
   height: 34px;
-  margin: 66px 0 0 30px;
+  margin-left: 30px;
   object-fit: contain;
 	opacity: 0.5;
 }
@@ -44,7 +45,7 @@
 .home header .addIcon{
   width: 42px;
   height: 42px;
-  margin: 62px 30px 0 0;
+  margin-right:30px;
   object-fit: contain;
 	opacity: 0.5;
 }
