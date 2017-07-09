@@ -12,6 +12,11 @@ const Header = (props) => {
         <img src="img/add.svg" className="addIcon" onClick={onShowAdd} />
       </div>
       <Search onShowSearch={onShowSearch} />
+      <div className="filter">
+        <div className="item">Tasks</div>
+        <div className="item">Completed</div>
+        <div className="slider"></div>
+      </div>
     </header>
   )
 }

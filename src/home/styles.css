@@ -83,6 +83,34 @@
   outline-width: 0;
 }
 
+.home .filter{
+  position: relative;
+  height: 106.1px;
+  display: flex;
+  border: 1px solid red;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+.home .filter .item{
+  font-family: Avenir;
+	font-size: 26px;
+	font-weight: 900;
+	line-height: 1.15;
+	text-align: center;
+	color: #1d1d26;
+}
+
+.home .filter .slider{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100px;
+  background-color: #1d1d26;
+	box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, 0.03);
+}
+
 .home .lists{
   background: #F4F7FA;
 }
