@@ -7,7 +7,7 @@ import Add from './add'
 import './App.css'
 
 class App extends Component {
-  state = { synching: true, view: 'home' }
+  state = { synching: true, view: 'search' }
 
   componentDidMount = () => {
     firebase.initializeApp(firebaseConfig)

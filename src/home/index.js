@@ -3,10 +3,11 @@ import classnames from 'classnames'
 import './styles.css'
 
 const Header = props => {
-  const { onQuery, query, onFilter, filter, onShowAdd, onShowSearch } = props
+  const { onQuery, query, onFilter, filter, onShowAdd, onShowSearch, view } = props
   const taskClass = classnames('item', { active: filter === 'tasks' })
   const completedClass = classnames('item', { active: filter === 'completed' })
   const sliderClass = classnames('sliderWrapper', { completed: filter === 'completed' })
+  const filterClass = classnames('filter', { searchActive: view === 'search' })
   return (
     <header>
       <div className="wrapper">
@@ -14,8 +15,11 @@ const Header = props => {
         <div className="title">ReNest</div>
         <img src="img/add.svg" className="addIcon" onClick={onShowAdd} />
       </div>
-      <Search onShowSearch={onShowSearch} />
-      <div className="filter">
+      <Search
+        onQuery={onQuery}
+        onShowSearch={onShowSearch}
+        view={view} />
+      <div className={filterClass}>
         <div onClick={() => onFilter('tasks')} className={taskClass}>Tasks</div>
         <div onClick={() => onFilter('completed')} className={completedClass}>Completed</div>
         <div className={sliderClass}>
@@ -27,20 +31,19 @@ const Header = props => {
 }
 
 const Search = props => {
-  //const { onShowSearch } = props
-  const onShowSearch = () => {}
+  const { onQuery, onShowSearch, view } = props
+  const searchClass = classnames('searchBox', { searchActive: view === 'search' })
   return (
-    <div className="searchBox" onClick={onShowSearch}>
+    <div className={searchClass}>
       <div>
         <img src="img/search-icon.svg" className="icon" />
       </div>
       <input
+        onFocus={() => onShowSearch()}
         className="search"
         type="text"
         placeholder="Search"
-        onChange={e => {
-          console.log(e.currentTarget.value)
-        }} />
+        onChange={e => { onQuery(e.currentTarget.value) }} />
     </div>
   )
 }
@@ -106,8 +109,8 @@ const Completed = props => {
 }
 
 const Lists = props => {
-  const { items = [], onCompleted, filter } = props
-  const listsClass = classnames('lists', { completed: filter === 'completed' })
+  const { items = [], onCompleted, filter, view } = props
+  const listsClass = classnames('lists', { completed: filter === 'completed' }, { searchActive: view === 'search'})
   return (
     <div className={listsClass}>
       <div className="tasksList">
@@ -159,18 +162,25 @@ class Home extends PureComponent {
   render() {
     const { filter, query } = this.state
     const { items = [], view, onShowAdd, onShowSearch } = this.props
+    let queried = x => true
+    if (query.length) {
+      queried = x => x.label.toLowerCase().includes(query.toLowerCase())
+    }
+    const filtered = items.filter(queried)
     return (
       <section className={classnames('home', { inactive: view === 'add' })}>
         <Header
           onShowAdd={onShowAdd}
           onShowSearch={onShowSearch}
+          view={view}
           filter={filter}
           query={query}
           onFilter={this.onFilter}
           onQuery={this.onQuery} />
         <Lists
           onCompleted={this.onCompleted}
-          items={items}
+          view={view}
+          items={filtered}
           filter={filter} />
       </section>
     )
