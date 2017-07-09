@@ -17,6 +17,7 @@ class App extends Component {
       console.log('Received update: ', snapshot.val());
       this.setState({ data: snapshot.val(), synching: false })
     });
+    /*
     firebase.database().ref().once('value', snapshot => { 
       firebase.database().ref().set({
         version: '1.0.0',
@@ -35,6 +36,7 @@ class App extends Component {
         ]
       })
     })
+    */
   }
  
   onUpdate = data => {

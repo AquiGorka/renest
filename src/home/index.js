@@ -96,25 +96,30 @@ const Completed = props => {
 }
 
 export const Lists = props => {
-  const { items = [], onCompleted } = props
+  const { items = [], onCompleted, filter } = props
+  const listsClass = classnames('lists', { completed: filter === 'completed' })
   return (
-    <div className="lists">
-      <List
-        label="High priority"
-        color="#FF2765"
-        onCompleted={onCompleted}
-        items={items.filter(x => !x.status && x.priority === 3)} />
-      <List
-        label="Normal priority"
-        color="#47CE00"
-        onCompleted={onCompleted}
-        items={items.filter(x => !x.status && x.priority === 2)} />
-      <List
-        label="Low priority"
-        color="#4196EB"
-        onCompleted={onCompleted}
-        items={items.filter(x => !x.status && x.priority === 1)} />
-      <Completed items={items.filter(x => x.status)} />
+    <div className={listsClass}>
+      <div className="tasksList">
+        <List
+          label="High priority"
+          color="#FF2765"
+          onCompleted={onCompleted}
+          items={items.filter(x => !x.status && x.priority === 3)} />
+        <List
+          label="Normal priority"
+          color="#47CE00"
+          onCompleted={onCompleted}
+          items={items.filter(x => !x.status && x.priority === 2)} />
+        <List
+          label="Low priority"
+          color="#4196EB"
+          onCompleted={onCompleted}
+          items={items.filter(x => !x.status && x.priority === 1)} />
+      </div>
+      <div className="completedList">
+        <Completed items={items.filter(x => x.status)} />
+      </div>
     </div>
   )
 }
@@ -144,11 +149,6 @@ class Home extends PureComponent {
   render() {
     const { filter, query } = this.state
     const { items = [], view, onShowAdd, onShowSearch } = this.props
-    let remove = x => !x.status
-    if (filter === 'completed') {
-      remove = x => x.status
-    }
-    const filtered = items.filter(remove)
     return (
       <section className={classnames('home', { inactive: view === 'add' })}>
         <Header
@@ -160,7 +160,8 @@ class Home extends PureComponent {
           onQuery={this.onQuery} />
         <Lists
           onCompleted={this.onCompleted}
-          items={filtered} />
+          items={items}
+          filter={filter} />
       </section>
     )
   }

@@ -2,6 +2,7 @@
   z-index: 1;
   transition: top 0.5s;
   transition-timing-function: ease-in;
+  overflow-x: hidden;
 }
 
 .home.inactive{
@@ -129,7 +130,40 @@
 }
 
 .home .lists{
+  display: flex;
+  position: relative;
+  left: 0;
+  width: 100%;
+  transition: left .5s ease-out;
+}
+
+.home .lists .tasksList{
+  position: relative;
   background: #F4F7FA;
+  height: 100%;
+}
+
+.home .lists.completed .completedList{
+  position: relative;
+  height: 100%;
+  border: none;
+}
+
+.home .lists.completed{
+  left: -100%;
+}
+
+.home .lists.completed .tasksList{
+  position: absolute;
+  border:10px solid yellow;
+}
+
+.home .lists .completedList{
+  background: #F4F7FA;
+  width: 100%;
+  position: absolute;
+  left: 100%;
+  border:10px solid yellow;
 }
 
 .home .listWrapper{
@@ -198,3 +232,4 @@
 	color: #32315C;
   margin-left: 34px;
 }
+
