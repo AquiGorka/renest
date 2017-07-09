@@ -16,7 +16,17 @@ class App extends Component {
       console.log('Received update: ', snapshot.val());
       this.setState({ data: snapshot.val(), synching: false })
     });
-    /*
+  }
+ 
+  onUpdate = data => {
+    console.log('Sending data: ', data)
+    if (!data || !data.version) {
+      data.version = version
+    }
+    firebase.database().ref().set(data);
+  }
+
+  onReset = () => {
     firebase.database().ref().once('value', snapshot => { 
       firebase.database().ref().set({
         version: '1.0.0',
@@ -35,15 +45,6 @@ class App extends Component {
         ]
       })
     })
-    */
-  }
- 
-  onUpdate = data => {
-    console.log('Sending data: ', data)
-    if (!data || !data.version) {
-      data.version = version
-    }
-    firebase.database().ref().set(data);
   }
 
   onShow = (view) => {
@@ -67,6 +68,7 @@ class App extends Component {
           view={view}
           items={items}
           onUpdate={this.onUpdate}
+          onReset={this.onReset}
           onShowSearch={() => this.onShow('search')}
           onShowAdd={() => this.onShow('add')}
           onShowHome={() => this.onShow('home')} />

@@ -104,6 +104,12 @@
   margin-right: 24px;
 }
 
+.home .searchWrapper .clear{
+  display: none;
+  position: relative;
+  right: 24px;
+}
+
 /* search active */
 .home .searchWrapper.searchActive{
     background: #FFF;
@@ -113,6 +119,10 @@
     margin: 0;
     border-radius: 0;
     z-index: 1;
+}
+
+.home .searchWrapper.searchActive .clear{
+  display: block;
 }
 
 .home .searchWrapper.searchActive .searchBox{

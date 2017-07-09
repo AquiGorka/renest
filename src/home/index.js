@@ -3,7 +3,17 @@ import classnames from 'classnames'
 import './styles.css'
 
 const Header = props => {
-  const { onQuery, query, onFilter, filter, onShowAdd, onShowSearch, onShowHome, view } = props
+  const {
+    onQuery,
+    query,
+    onFilter,
+    filter,
+    onShowAdd,
+    onShowSearch,
+    onShowHome,
+    onReset,
+    view
+  } = props
   const taskClass = classnames('item', { active: filter === 'tasks' })
   const completedClass = classnames('item', { active: filter === 'completed' })
   const sliderClass = classnames('sliderWrapper', { completed: filter === 'completed' })
@@ -11,7 +21,7 @@ const Header = props => {
   return (
     <header>
       <div className="wrapper">
-        <img src="img/menu.svg" className="menuIcon" />
+        <img src="img/menu.svg" className="menuIcon" onClick={onReset} />
         <div className="title">ReNest</div>
         <img src="img/add.svg" className="addIcon" onClick={onShowAdd} />
       </div>
@@ -31,25 +41,49 @@ const Header = props => {
   )
 }
 
-const Search = props => {
-  const { onQuery, onShowSearch, onShowHome, view } = props
-  const searchClass = classnames('searchWrapper', { searchActive: view === 'search' })
-  return (
-    <div className={searchClass}>
-      <div className="searchBox">
-        <div>
-          <img src="img/search-icon.svg" className="icon" />
+class Search extends PureComponent {
+
+  clear = () => {
+    const { onQuery } = this.props
+    this.refs.input.value = ''
+    onQuery('')
+  }
+
+  render() {
+    const { onQuery, onShowSearch, onShowHome, view } = this.props
+    const searchClass = classnames('searchWrapper', { searchActive: view === 'search' })
+    return (
+      <div className={searchClass}>
+        <div className="searchBox">
+          <div>
+            <img src="img/search-icon.svg" className="icon" />
+          </div>
+          <input
+            ref="input"
+            onFocus={onShowSearch}
+            className="search"
+            type="text"
+            placeholder="Search"
+            onChange={e => { onQuery(e.currentTarget.value) }} />
+          <img
+            src="img/clear.svg"
+            className="clear"
+            onClick={() => {
+              this.clear()
+              this.refs.input.focus()
+            }} />
         </div>
-        <input
-          onFocus={() => onShowSearch()}
-          className="search"
-          type="text"
-          placeholder="Search"
-          onChange={e => { onQuery(e.currentTarget.value) }} />
+        <div
+          onClick={() => {
+            this.clear()
+            onShowHome()
+          }}
+          className="cancel">
+          Cancel
+        </div>
       </div>
-      <div onClick={onShowHome} className="cancel">Cancel</div>
-    </div>
-  )
+    )
+  }
 }
 
 const Item = props => {
@@ -165,7 +199,7 @@ class Home extends PureComponent {
 
   render() {
     const { filter, query } = this.state
-    const { items = [], view, onShowAdd, onShowSearch, onShowHome } = this.props
+    const { items = [], view, onShowAdd, onShowSearch, onShowHome, onReset } = this.props
     let queried = x => true
     if (query.length) {
       queried = x => x.label.toLowerCase().includes(query.toLowerCase())
@@ -174,6 +208,7 @@ class Home extends PureComponent {
     return (
       <section className={classnames('home', { inactive: view === 'add' })}>
         <Header
+          onReset={onReset}
           onShowHome={onShowHome}
           onShowAdd={onShowAdd}
           onShowSearch={() => {
