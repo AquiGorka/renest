@@ -3,6 +3,7 @@
   transition: top 0.5s;
   transition-timing-function: ease-in;
   overflow-x: hidden;
+  background: #F4F7FA;
 }
 
 .home.inactive{
@@ -12,6 +13,7 @@
 .home header{
   height: 313.2px;
   min-height: 313.2px;
+  background: #FFF;
 }
 
 .home header .wrapper{
@@ -211,13 +213,11 @@
 
 .home .lists .tasksList{
   position: relative;
-  background: #F4F7FA;
   height: 100%;
   width: 50%;
 }
 
 .home .lists .completedList{
-  background: #F4F7FA;
   height: 101%;
   width: 50%;
   left: 50%;

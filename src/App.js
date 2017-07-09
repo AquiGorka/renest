@@ -3,7 +3,6 @@ import { version } from '../package.json'
 import firebase from 'firebase'
 import firebaseConfig from '../firebase.js'
 import Home from './home'
-import Search from './search'
 import Add from './add'
 import './App.css'
 
@@ -70,10 +69,6 @@ class App extends Component {
           onUpdate={this.onUpdate}
           onShowSearch={() => this.onShow('search')}
           onShowAdd={() => this.onShow('add')} />
-        <Search
-          view={view}
-          items={items}
-          onShowHome={() => this.onShow('home')} />
       </div>
     )
   }
