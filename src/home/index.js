@@ -17,11 +17,20 @@ const Header = (props) => {
 }
 
 const Search = (props) => {
-  const { onShowSearch } = props
+  //const { onShowSearch } = props
+  const onShowSearch = () => {}
   return (
     <div className="searchBox" onClick={onShowSearch}>
-      <img src="img/search-icon.svg" className="icon" />
-      <div className="text">Search</div>
+      <div>
+        <img src="img/search-icon.svg" className="icon" />
+      </div>
+      <input
+        className="search"
+        type="text"
+        placeholder="Search"
+        onChange={e => {
+          console.log(e.currentTarget.value)
+        }} />
     </div>
   )
 }
