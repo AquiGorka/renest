@@ -139,6 +139,7 @@
 
 .home .lists.searchActive{
   top: -190px;
+  background: #F4F7FA;
 }
 
 .home .filters.searchActive{
@@ -199,6 +200,7 @@
   left: 0;
   width: 200%;
   transition: all .5s ease-out;
+  background: #F4F7FA;
 }
 
 .home .lists.completed{
