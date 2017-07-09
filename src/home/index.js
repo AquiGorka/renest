@@ -2,7 +2,7 @@ import React, { PureComponent }  from 'react'
 import classnames from 'classnames'
 import './styles.css'
 
-const Header = (props) => {
+const Header = props => {
   const { onQuery, query, onFilter, filter, onShowAdd, onShowSearch } = props
   const taskClass = classnames('item', { active: filter === 'tasks' })
   const completedClass = classnames('item', { active: filter === 'completed' })
@@ -26,7 +26,7 @@ const Header = (props) => {
   )
 }
 
-const Search = (props) => {
+const Search = props => {
   //const { onShowSearch } = props
   const onShowSearch = () => {}
   return (
@@ -45,19 +45,19 @@ const Search = (props) => {
   )
 }
 
-export const Item = (props) => {
-  const { item } = props
-  const { label } = item
+export const Item = props => {
+  const { item, onCompleted } = props
+  const { id, label } = item
   return (
     <div className="itemWrapper">
-      <div className="status"></div>
+      <div onClick={() => onCompleted(id)}className="status"></div>
       <div className="text">{label}</div>
     </div>
   )
 }
 
-export const List = (props) => {
-  const { label, items, color } = props
+export const List = props => {
+  const { label, items, color, onCompleted } = props
   if (!items.length) {
     return <div></div>
   }
@@ -71,7 +71,7 @@ export const List = (props) => {
           const { id } = item
           return (
             <li key={id}>
-              <Item item={item} />
+              <Item item={item} onCompleted={onCompleted} />
             </li>
           )
         })}
@@ -80,22 +80,41 @@ export const List = (props) => {
   )
 }
 
-export const Lists = (props) => {
-  const { items = [] } = props
+const Completed = props => {
+  const { items } = props
+  if (!items.length) {
+    return <div></div>
+  }
+  return (
+    <ul>
+      {items.map(item => {
+        const { id, label } = item
+        return <li key={id}>{label}</li>
+      })}
+    </ul>
+  )
+}
+
+export const Lists = props => {
+  const { items = [], onCompleted } = props
   return (
     <div className="lists">
       <List
         label="High priority"
         color="#FF2765"
-        items={items.filter(x => x.priority === 3)} />
+        onCompleted={onCompleted}
+        items={items.filter(x => !x.status && x.priority === 3)} />
       <List
         label="Normal priority"
         color="#47CE00"
-        items={items.filter(x => x.priority === 2)} />
+        onCompleted={onCompleted}
+        items={items.filter(x => !x.status && x.priority === 2)} />
       <List
         label="Low priority"
         color="#4196EB"
-        items={items.filter(x => x.priority === 1)} />
+        onCompleted={onCompleted}
+        items={items.filter(x => !x.status && x.priority === 1)} />
+      <Completed items={items.filter(x => x.status)} />
     </div>
   )
 }
@@ -110,6 +129,16 @@ class Home extends PureComponent {
 
   onQuery = query => {
     this.setState({ query })
+  }
+
+  onCompleted = id => {
+    const { items, onUpdate } = this.props
+    const item = items.find(x => x.id === id)
+    const { status, ...rest } = item
+    const newItem = { status: true, ...rest }
+    const newItems = items.filter(x => x.id !== id)
+      .concat([newItem])
+    onUpdate({ items: newItems })
   }
 
   render() {
@@ -129,7 +158,9 @@ class Home extends PureComponent {
           query={query}
           onFilter={this.onFilter}
           onQuery={this.onQuery} />
-        <Lists items={filtered} />
+        <Lists
+          onCompleted={this.onCompleted}
+          items={filtered} />
       </section>
     )
   }

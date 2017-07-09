@@ -65,7 +65,7 @@ class App extends Component {
         <Home
           view={view}
           items={items}
-          onupdate={this.onupdate}
+          onUpdate={this.onUpdate}
           onShowSearch={() => this.onShow('search')}
           onShowAdd={() => this.onShow('add')} />
         <Search
