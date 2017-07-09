@@ -86,15 +86,30 @@ class Search extends PureComponent {
   }
 }
 
-const Item = props => {
-  const { item, onCompleted } = props
-  const { id, label } = item
-  return (
-    <div className="itemWrapper">
-      <div onClick={() => onCompleted(id)} className="status"></div>
-      <div className="text">{label}</div>
-    </div>
-  )
+class Item extends PureComponent {
+  
+  state = { completed: false }
+  
+  render() {
+    const { completed } = this.state
+    const { item, onCompleted } = this.props
+    const { id, label } = item
+    const itemClass = classnames('itemWrapper', { completed })
+    return (
+      <div className={itemClass}>
+        <div
+          onClick={() => {
+            this.setState({ completed: true })
+            setTimeout(() => {
+              onCompleted(id)
+            }, 750)
+          }}
+          className="status"></div>
+        <div className="text">{label}</div>
+        <div className="strikethrough"></div>
+      </div>
+    )
+  }
 }
 
 const List = props => {

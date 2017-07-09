@@ -58,7 +58,7 @@
 .home .searchWrapper{
   display: flex;
   align-items: center;
-  transition: all .5s ease-in;
+  transition: all .5s ease-out;
 }
 
 .home .searchBox{
@@ -255,15 +255,17 @@
 
 .home .listWrapper li{
   height: 140px;
-  background: #FFF;
   margin: 10px 19px;
   border-radius: 10px;
 }
 
 .home .listWrapper .itemWrapper{
+  background: #FFF;
   display: flex;
+  position: relative;
   height: 100%;
   align-items: center;
+  transition: all .5s ease-in;
 }
 
 .home .listWrapper .itemWrapper .status{
@@ -287,6 +289,32 @@
   margin-left: 34px;
   margin-right: 4px;
   word-break: break-word;
+  position: relative;
+}
+
+/* completed item */
+.home .listWrapper .itemWrapper.completed{
+  opacity: 0;
+	background: #F4F7FA;
+  height: 100px;
+}
+
+.home .listWrapper .itemWrapper.completed .strikethrough{
+	position: absolute;
+  top: 50%;
+	display: block;
+	width: 60%;
+	height: 2px;
+	background: #32315c;
+	transform-origin: center left;
+  margin: -1px 0 0 127px;
+	animation: strikethrough 1s ease-out 1;
+	transition: transform 1s ease-out;
+}
+
+@keyframes strikethrough{
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
 }
 
 /* completed list */
