@@ -281,6 +281,7 @@
 
 .home .listWrapper .itemWrapper{
   background: #FFF;
+  box-shadow: 0 9px 9px 0 rgba(0, 0, 0, 0.02);
   display: flex;
   position: relative;
   height: 100%;
