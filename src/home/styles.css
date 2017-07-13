@@ -2,8 +2,6 @@
 .home{
   z-index: 1;
   transition: top 0.5s ease-out;
-  display: flex;
-  flex-direction: column;
 }
 
 .home.inactive{
@@ -11,6 +9,7 @@
 }
 
 .home .innerWrapper{
+  height: 100%;
   position: relative;
   background: #F4F7FA;
   overflow-y: auto;
@@ -124,7 +123,6 @@
 
 .home .innerWrapper.searchActive{
   overflow: hidden;
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
