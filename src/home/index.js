@@ -4,38 +4,18 @@ import './styles.css'
 
 const Header = props => {
   const {
-    onQuery,
-    query,
-    onFilter,
-    filter,
     onShowAdd,
-    onShowSearch,
     onShowHome,
     onReset,
     view
   } = props
-  const taskClass = classnames('item', { active: filter === 'tasks' })
-  const completedClass = classnames('item', { active: filter === 'completed' })
-  const sliderClass = classnames('sliderWrapper', { completed: filter === 'completed' })
-  const filterClass = classnames('filter', { searchActive: view === 'search' })
+  const headerClass = classnames({ searchActive: view === 'search' })
   return (
-    <header>
+    <header className={headerClass}>
       <div className="wrapper">
         <img src="img/menu.svg" className="menuIcon" onClick={onReset} />
         <div className="title">ReNest</div>
         <img src="img/add.svg" className="addIcon" onClick={onShowAdd} />
-      </div>
-      <Search
-        onQuery={onQuery}
-        onShowSearch={onShowSearch}
-        onShowHome={onShowHome}
-        view={view} />
-      <div className={filterClass}>
-        <div onClick={() => onFilter('tasks')} className={taskClass}>Tasks</div>
-        <div onClick={() => onFilter('completed')} className={completedClass}>Completed</div>
-        <div className={sliderClass}>
-          <div className="slider"></div>
-        </div>
       </div>
     </header>
   )
@@ -220,30 +200,42 @@ class Home extends PureComponent {
       queried = x => x.label.toLowerCase().includes(query.toLowerCase())
     }
     const filtered = items.filter(queried)
+    const filterClass = classnames('filter', { searchActive: view === 'search' })
+    const taskClass = classnames('item', { active: filter === 'tasks' })
+    const completedClass = classnames('item', { active: filter === 'completed' })
+    const sliderClass = classnames('sliderWrapper', { completed: filter === 'completed' })
+    const innerWrapperClass = classnames('innerWrapper', { searchActive: view === 'search'})
     return (
       <section className={classnames('home', { inactive: view === 'add' })}>
         <Header
+          view={view}
           onReset={onReset}
-          onShowHome={onShowHome}
-          onShowAdd={onShowAdd}
+          onShowAdd={onShowAdd} />
+        <div className={innerWrapperClass}>
+        <Search
+          onQuery={this.onQuery}
           onShowSearch={() => {
             this.setState({ filter: 'tasks' })
             onShowSearch()
           }}
-          view={view}
-          filter={filter}
-          query={query}
-          onFilter={this.onFilter}
-          onQuery={this.onQuery} />
+          onShowHome={onShowHome}
+          view={view} />
+        <div className={filterClass}>
+          <div onClick={() => this.onFilter('tasks')} className={taskClass}>Tasks</div>
+          <div onClick={() => this.onFilter('completed')} className={completedClass}>Completed</div>
+          <div className={sliderClass}>
+            <div className="slider"></div>
+          </div>
+        </div>
         <Lists
           onCompleted={this.onCompleted}
           view={view}
           items={filtered}
           filter={filter} />
+      </div>
       </section>
     )
   }
 }
-  
   
 export default Home

@@ -2,19 +2,26 @@
 .home{
   z-index: 1;
   transition: top 0.5s ease-out;
-  overflow-x: hidden;
-  background: #F4F7FA;
+  display: flex;
+  flex-direction: column;
 }
 
 .home.inactive{
   top: 100%;
 }
 
+.home .innerWrapper{
+  position: relative;
+  background: #F4F7FA;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 /* header */
 .home header{
-  height: 313.2px;
-  min-height: 313.2px;
+  height: 130px;
   background: #FFF;
+  transition: all 0.3s ease-in;
 }
 
 .home header .wrapper{
@@ -56,9 +63,10 @@
 
 /* search box */
 .home .searchWrapper{
+  padding-top: 1px;
   display: flex;
   align-items: center;
-  transition: all .5s ease-out;
+  background: #FFF;
 }
 
 .home .searchBox{
@@ -110,14 +118,23 @@
 }
 
 /* search active */
+.home header.searchActive{
+  height: 0;
+}
+
+.home .innerWrapper.searchActive{
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .home .searchWrapper.searchActive{
-    background: #FFF;
-    position: absolute;
-    top: 30px;
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    z-index: 1;
+  background: #FFF;
+  width: 100%;
+  padding: 23px 14px;
+  border-radius: 0;
+  z-index: 3;
 }
 
 .home .searchWrapper.searchActive .clear{
@@ -137,13 +154,11 @@
 }
 
 .home .lists.searchActive{
-  top: -190px;
-  background: #F4F7FA;
-  min-height: 190px;
+  overflow: auto;
 }
 
-.home .filters.searchActive{
-  opacity: 0;
+.home .filter.searchActive{
+  display: none;
 }
 
 /* filters */
@@ -153,6 +168,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
+  background: #FFF;
 }
 
 .home .filter .item{
